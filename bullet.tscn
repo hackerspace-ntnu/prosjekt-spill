@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://82lxvxj5exg0"]
+
+[ext_resource type="Script" path="res://Bullet.cs" id="1_2kk7m"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qvtji"]
+
+[node name="bullet" type="Node3D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_2kk7m")
+timer = NodePath("Timer")
+tobiasKultNr = 6.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_qvtji")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

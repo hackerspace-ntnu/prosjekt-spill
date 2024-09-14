@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://batbnm1bs7qew"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_vjoxo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_26jgk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_njmyq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5eqi"]
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="Animation" id="Animation_6c7uf"]
+resource_name = "Run"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.85217)]
+}
+
+[sub_resource type="Animation" id="Animation_3jpa5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efujk"]
+_data = {
+"RESET": SubResource("Animation_3jpa5"),
+"Run": SubResource("Animation_6c7uf")
+}
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_rawq5"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_vjoxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_26jgk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_njmyq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735108, 0.132024, -0.394382)
+mesh = SubResource("BoxMesh_m5eqi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.941312, 0.337539, 0, -0.337539, 0.941312, 0, 1.51852, 2.99142)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_efujk")
+}
+tree_root = SubResource("AnimationRootNode_rawq5")

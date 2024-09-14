@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://b20mgjij7s0d2"]
+
+[ext_resource type="Texture2D" uid="uid://cgyrstn8qbfvf" path="res://mqdefault.jpg" id="1_a3mje"]
+[ext_resource type="Script" path="res://Node3d.cs" id="1_we1ut"]
+[ext_resource type="PackedScene" uid="uid://batbnm1bs7qew" path="res://player.tscn" id="2_lbbky"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_301qc"]
+sky_top_color = Color(0.552521, 0.692033, 0.952292, 1)
+sky_horizon_color = Color(0.68813, 0.715258, 0.771323, 1)
+ground_horizon_color = Color(0.68813, 0.715258, 0.771323, 1)
+
+[sub_resource type="Sky" id="Sky_nb81h"]
+sky_material = SubResource("ProceduralSkyMaterial_301qc")
+
+[sub_resource type="Environment" id="Environment_ct3ll"]
+background_mode = 2
+sky = SubResource("Sky_nb81h")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82e4a"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyo7m"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moogm"]
+albedo_texture = ExtResource("1_a3mje")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_we1ut")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ct3ll")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.368049, 0.338438, 0, 0.676876, 0.736097, -0.5, 0.637479, -0.586192, 0, 0, 0)
+light_color = Color(0.899817, 0.716295, 0.331048, 1)
+light_energy = 1.9
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_82e4a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_tyo7m")
+surface_material_override/0 = SubResource("StandardMaterial3D_moogm")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_lbbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88861, 0)

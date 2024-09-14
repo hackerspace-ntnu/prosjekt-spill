@@ -15,8 +15,8 @@ modification, are permitted provided that the following conditions are met:
 
 3. All advertising materials mentioning features or use of this software must
    display the following acknowledgement:
-     This product includes software developed by Prosjekt: Spill,
-     of Hackerspace NTNU.
+	 This product includes software developed by Prosjekt: Spill,
+	 of Hackerspace NTNU.
 
 4. Neither the name of the copyright holder nor the names of its
    contributors may be used to endorse or promote products derived from
