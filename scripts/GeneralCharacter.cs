@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Xml.Schema;
 
 public partial class GeneralCharacter : CharacterBody3D
 {	
@@ -15,16 +14,19 @@ public partial class GeneralCharacter : CharacterBody3D
 
 	// OnReadys
 	private Camera3D camera;
+	private bool escape = false;
 
 	public override void _Ready()
 	{
 		camera = GetNode<Camera3D>("FirstPersonCam");
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
-		if (Input.IsActionJustPressed("Jump"))
+		if (IsOnFloor() && Input.IsActionJustPressed("Jump"))
 		{
 			velocity.Y = jumpVelocity;
 		}
@@ -52,7 +54,13 @@ public partial class GeneralCharacter : CharacterBody3D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseMotion eventMouseMotion)
+		if (Input.IsActionJustPressed("Escape"))
+		{
+			escape = !escape;
+			Input.MouseMode = escape ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
+		}
+		
+		if (@event is InputEventMouseMotion eventMouseMotion && !escape)
 		{
 			RotateY(Mathf.DegToRad(-eventMouseMotion.Relative.X * sens));
 			camera.RotateX(Mathf.DegToRad(-eventMouseMotion.Relative.Y * sens));
