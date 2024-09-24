@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://gesyv5s7ghr7"]
+
+[ext_resource type="Script" path="res://scripts/player/Ability.cs" id="1_1f8gq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_1f8gq")

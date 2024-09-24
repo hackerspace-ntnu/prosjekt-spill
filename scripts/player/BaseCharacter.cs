@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public partial class GeneralCharacter : CharacterBody3D
+public partial class BaseCharacter : CharacterBody3D
 {	
+	[ExportGroup("Character Attributes")]
 	[Export]
 	private float speed = 5.0f;
 	
@@ -12,6 +13,9 @@ public partial class GeneralCharacter : CharacterBody3D
 	[Export]
 	private float sens = 1.5f;
 
+	[Export]
+	public AbilityHandler abilityHandler { get; private set; }
+
 	// OnReadys
 	private Camera3D camera;
 	private bool escape = false;
@@ -20,7 +24,6 @@ public partial class GeneralCharacter : CharacterBody3D
 	{
 		camera = GetNode<Camera3D>("FirstPersonCam");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -54,12 +57,6 @@ public partial class GeneralCharacter : CharacterBody3D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (Input.IsActionJustPressed("Escape"))
-		{
-			escape = !escape;
-			Input.MouseMode = escape ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
-		}
-		
 		if (@event is InputEventMouseMotion eventMouseMotion && !escape)
 		{
 			RotateY(Mathf.DegToRad(-eventMouseMotion.Relative.X * sens));
@@ -68,6 +65,37 @@ public partial class GeneralCharacter : CharacterBody3D
 			float clampedX = Mathf.Clamp(camera.RotationDegrees.X, -80, 80);
 			camera.RotationDegrees = new Vector3(clampedX, camera.RotationDegrees.Y, camera.RotationDegrees.Z);
 		}
+
+		if (Input.IsActionJustPressed("Escape"))
+		{
+			escape = !escape;
+			Input.MouseMode = escape ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
+		}
+
+		// if (Input.IsActionPressed("Primary"))
+		// {
+		// 	abilityHandler.primaryAbility?.Activate();
+		// }
+
+		// if (Input.IsActionJustPressed("Secondary"))
+		// {
+		// 	abilityHandler.secondaryAbility?.Activate();
+		// }
+
+		// if (Input.IsActionPressed("UtilityOne"))
+		// {
+		// 	abilityHandler.primaryAbility?.Activate();
+		// }
+
+		// if (Input.IsActionPressed("UtilityTwo"))
+		// {
+		// 	abilityHandler.primaryAbility?.Activate();
+		// }
+
+		// if (Input.IsActionPressed("Ultimate"))
+		// {
+		// 	abilityHandler.primaryAbility?.Activate();
+		// }
 	}
 
 	private Vector3 HandleAirVelocity(Vector3 wishDirection, Vector3 currentVelocity, double delta)

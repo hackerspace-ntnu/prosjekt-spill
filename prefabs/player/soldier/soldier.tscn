@@ -1,0 +1,44 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbe3voxfi3e2h"]
+
+[ext_resource type="Script" path="res://scripts/player/BaseCharacter.cs" id="1_oyapw"]
+[ext_resource type="PackedScene" uid="uid://te60tq8nvorn" path="res://prefabs/abilities/SoldierPrimary.tscn" id="2_4p1pr"]
+[ext_resource type="PackedScene" uid="uid://24eu7nt8kxbo" path="res://prefabs/player/player_ui.tscn" id="2_mnmlc"]
+[ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="3_pwefy"]
+[ext_resource type="Resource" uid="uid://gesyv5s7ghr7" path="res://resources/classes/soldier/soldierPrimary.tres" id="4_dqlnq"]
+[ext_resource type="Resource" uid="uid://81umvqaa531m" path="res://resources/classes/soldier/soldierSecondary.tres" id="5_a5pmv"]
+[ext_resource type="Resource" uid="uid://cohyqpax7kycv" path="res://resources/classes/soldier/soldierUtilOne.tres" id="6_kxnmg"]
+[ext_resource type="Resource" uid="uid://bmsou2uy3akij" path="res://resources/classes/soldier/soldierUtilTwo.tres" id="7_e4nk5"]
+[ext_resource type="Resource" uid="uid://bid5c5dbcyfdu" path="res://resources/classes/soldier/soldierUltimate.tres" id="8_ob2lo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhgg5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kna14"]
+
+[node name="SoldierClass" type="CharacterBody3D" node_paths=PackedStringArray("abilityHandler")]
+script = ExtResource("1_oyapw")
+sens = 0.3
+abilityHandler = NodePath("AbilityHandler")
+
+[node name="CapsuleCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hhgg5")
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kna14")
+
+[node name="FirstPersonCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, -0.179157)
+near = 0.01
+
+[node name="SoldierPrimary" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("2_4p1pr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275594, -0.208883, -0.237961)
+abilityHandler = NodePath("../../AbilityHandler")
+
+[node name="PlayerUI" parent="." instance=ExtResource("2_mnmlc")]
+
+[node name="AbilityHandler" type="Node3D" parent="."]
+script = ExtResource("3_pwefy")
+primaryAbility = ExtResource("4_dqlnq")
+secondaryAbility = ExtResource("5_a5pmv")
+utilityOneAbility = ExtResource("6_kxnmg")
+utilityTwoAbility = ExtResource("7_e4nk5")
+ultimateAbility = ExtResource("8_ob2lo")
