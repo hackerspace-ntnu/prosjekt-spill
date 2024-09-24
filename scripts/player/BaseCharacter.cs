@@ -71,31 +71,6 @@ public partial class BaseCharacter : CharacterBody3D
 			escape = !escape;
 			Input.MouseMode = escape ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
 		}
-
-		// if (Input.IsActionPressed("Primary"))
-		// {
-		// 	abilityHandler.primaryAbility?.Activate();
-		// }
-
-		// if (Input.IsActionJustPressed("Secondary"))
-		// {
-		// 	abilityHandler.secondaryAbility?.Activate();
-		// }
-
-		// if (Input.IsActionPressed("UtilityOne"))
-		// {
-		// 	abilityHandler.primaryAbility?.Activate();
-		// }
-
-		// if (Input.IsActionPressed("UtilityTwo"))
-		// {
-		// 	abilityHandler.primaryAbility?.Activate();
-		// }
-
-		// if (Input.IsActionPressed("Ultimate"))
-		// {
-		// 	abilityHandler.primaryAbility?.Activate();
-		// }
 	}
 
 	private Vector3 HandleAirVelocity(Vector3 wishDirection, Vector3 currentVelocity, double delta)
