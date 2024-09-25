@@ -1,7 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://gesyv5s7ghr7"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://gesyv5s7ghr7"]
 
-[ext_resource type="Script" path="res://scripts/player/Ability.cs" id="1_1f8gq"]
+[ext_resource type="Script" path="res://scripts/player/Ability.cs" id="1_e3qv3"]
+
+[sub_resource type="Animation" id="Animation_6al3w"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_1f8gq")
+script = ExtResource("1_e3qv3")
+playerAnimation = SubResource("Animation_6al3w")

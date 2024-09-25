@@ -8,10 +8,14 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+
 [application]
 
 config/name="prosjekt-spill-hs"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/MainScene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
