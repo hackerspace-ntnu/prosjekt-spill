@@ -49,3 +49,9 @@ secondaryAbility = ExtResource("5_a5pmv")
 utilityOneAbility = ExtResource("6_kxnmg")
 utilityTwoAbility = ExtResource("7_e4nk5")
 ultimateAbility = ExtResource("8_ob2lo")
+<<<<<<< HEAD
+=======
+primaryNodePath = NodePath("../FirstPersonCam/SoldierPrimary")
+primaryActivateMethodName = "Shoot"
+primaryDeactivateMethodName = "StoppedShooting"
+>>>>>>> feature/create-general-character

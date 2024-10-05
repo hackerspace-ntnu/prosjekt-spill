@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b3qxeagwmmece"]
 
 [ext_resource type="Texture2D" uid="uid://bc8o2xt4r6u0p" path="res://pexels-photo-413195.jpeg" id="1_fkt44"]
-[ext_resource type="PackedScene" uid="uid://cbe3voxfi3e2h" path="res://prefabs/player/soldier/Soldier.tscn" id="2_8x832"]
+[ext_resource type="PackedScene" uid="uid://cbe3voxfi3e2h" path="res://prefabs/player/soldier/soldier.tscn" id="2_8x832"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2rwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
