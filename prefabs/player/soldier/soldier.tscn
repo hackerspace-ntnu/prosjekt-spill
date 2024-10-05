@@ -1,0 +1,51 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbe3voxfi3e2h"]
+
+[ext_resource type="Script" path="res://scripts/player/BaseCharacter.cs" id="1_oyapw"]
+[ext_resource type="PackedScene" uid="uid://te60tq8nvorn" path="res://prefabs/abilities/soldier/SoldierPrimary.tscn" id="2_4p1pr"]
+[ext_resource type="PackedScene" uid="uid://24eu7nt8kxbo" path="res://prefabs/player/PlayerUI.tscn" id="2_mnmlc"]
+[ext_resource type="PackedScene" uid="uid://02n2p823lpwy" path="res://prefabs/abilities/soldier/BulletHole.tscn" id="3_k8gut"]
+[ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="3_pwefy"]
+[ext_resource type="Resource" uid="uid://gesyv5s7ghr7" path="res://resources/classes/soldier/SoldierPrimary.tres" id="4_dqlnq"]
+[ext_resource type="Resource" uid="uid://81umvqaa531m" path="res://resources/classes/soldier/SoldierSecondary.tres" id="5_a5pmv"]
+[ext_resource type="Resource" uid="uid://cohyqpax7kycv" path="res://resources/classes/soldier/SoldierUtilOne.tres" id="6_kxnmg"]
+[ext_resource type="Resource" uid="uid://bmsou2uy3akij" path="res://resources/classes/soldier/SoldierUtilTwo.tres" id="7_e4nk5"]
+[ext_resource type="Resource" uid="uid://bid5c5dbcyfdu" path="res://resources/classes/soldier/SoldierUltimate.tres" id="8_ob2lo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhgg5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kna14"]
+
+[node name="SoldierClass" type="CharacterBody3D" node_paths=PackedStringArray("abilityHandler")]
+script = ExtResource("1_oyapw")
+sens = 0.3
+abilityHandler = NodePath("AbilityHandler")
+
+[node name="CapsuleCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hhgg5")
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kna14")
+
+[node name="FirstPersonCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, -0.179157)
+near = 0.01
+
+[node name="SoldierPrimary" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler", "shootRayCast") instance=ExtResource("2_4p1pr")]
+transform = Transform3D(0.999391, 0.00121797, 0.0348782, 0, 0.999391, -0.0348995, -0.0348995, 0.0348782, 0.998782, 0.291, -0.229, -1.013)
+abilityHandler = NodePath("../../AbilityHandler")
+shootRayCast = NodePath("../ShootCast")
+bulletHole = ExtResource("3_k8gut")
+
+[node name="ShootCast" type="RayCast3D" parent="FirstPersonCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.323256)
+target_position = Vector3(0, 0, -100)
+
+[node name="PlayerUI" parent="." instance=ExtResource("2_mnmlc")]
+
+[node name="AbilityHandler" type="Node3D" parent="."]
+script = ExtResource("3_pwefy")
+primaryAbility = ExtResource("4_dqlnq")
+secondaryAbility = ExtResource("5_a5pmv")
+utilityOneAbility = ExtResource("6_kxnmg")
+utilityTwoAbility = ExtResource("7_e4nk5")
+ultimateAbility = ExtResource("8_ob2lo")

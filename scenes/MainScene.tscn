@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3qxeagwmmece"]
+
+[ext_resource type="Texture2D" uid="uid://bc8o2xt4r6u0p" path="res://pexels-photo-413195.jpeg" id="1_fkt44"]
+[ext_resource type="PackedScene" uid="uid://cbe3voxfi3e2h" path="res://prefabs/player/soldier/Soldier.tscn" id="2_8x832"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2rwf"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iwm6r"]
+sky_material = SubResource("ProceduralSkyMaterial_l2rwf")
+
+[sub_resource type="Environment" id="Environment_dluqk"]
+background_mode = 2
+sky = SubResource("Sky_iwm6r")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yq1hm"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kligg"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nail2"]
+albedo_texture = ExtResource("1_fkt44")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a7c5h"]
+size = Vector3(1, 6.35498, 16.3696)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k0y7k"]
+size = Vector3(1, 6.355, 16.37)
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dluqk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_yq1hm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_kligg")
+surface_material_override/0 = SubResource("StandardMaterial3D_nail2")
+
+[node name="GeneralCharacter" parent="." instance=ExtResource("2_8x832")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44904, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6091, 2.50396, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_a7c5h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_k0y7k")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.311473, 0, 0.950255, 0, 1, 0, -0.950255, 0, -0.311473, 6.62957, 2.50396, -8.03565)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_a7c5h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_k0y7k")

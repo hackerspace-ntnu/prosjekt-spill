@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://02n2p823lpwy"]
+
+[ext_resource type="Texture2D" uid="uid://dttueefpnegg5" path="res://assets/textures/pngimg.com - bullet_hole_PNG6062.png" id="1_tevxs"]
+[ext_resource type="Script" path="res://scripts/classes/soldier/abilities/BulletHole.cs" id="2_5ntjc"]
+
+[node name="BulletHole" type="Decal"]
+size = Vector3(0.4, 0.4, 0.4)
+texture_albedo = ExtResource("1_tevxs")
+script = ExtResource("2_5ntjc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

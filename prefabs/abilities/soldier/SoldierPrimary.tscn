@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://te60tq8nvorn"]
+
+[ext_resource type="Script" path="res://scripts/classes/soldier/abilities/SoldierPrimary.cs" id="1_5bibp"]
+[ext_resource type="PackedScene" uid="uid://5rjn86eocc6d" path="res://prefabs/abilities/soldier/Bullet.tscn" id="2_waic7"]
+[ext_resource type="PackedScene" uid="uid://yigkojy008bw" path="res://assets/models/soldier/Gun.glb" id="3_emius"]
+
+[sub_resource type="Animation" id="Animation_w0y0k"]
+resource_name = "GunShot"
+length = 0.07
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.035, 0.07),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.663632), Vector3(0, 0, 0.862121), Vector3(0, 0, 0.663632)]
+}
+
+[sub_resource type="Animation" id="Animation_tb6fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.663632)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yu4lb"]
+_data = {
+"GunShot": SubResource("Animation_w0y0k"),
+"RESET": SubResource("Animation_tb6fx")
+}
+
+[node name="SoldierPrimary" type="Node3D"]
+transform = Transform3D(0.682808, 0, 0, 0, 0.682808, 0, 0, 0, 0.682808, 0, 0, 0)
+script = ExtResource("1_5bibp")
+bulletScene = ExtResource("2_waic7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yu4lb")
+}
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="Gun" parent="." instance=ExtResource("3_emius")]
+transform = Transform3D(-2.97103e-08, 0, 0.679691, 0, 0.679691, 0, -0.679691, 0, -2.97103e-08, 0, 0, 0.663632)
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="Gun"]
+transform = Transform3D(-6.43106e-08, 0, -1.47126, 0, 1.47126, 0, 1.47126, 0, -6.43106e-08, 2.05362, 0, 8.97667e-08)
+
+[connection signal="timeout" from="ShootCooldown" to="." method="CanShoot"]

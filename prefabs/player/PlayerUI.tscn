@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://24eu7nt8kxbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqauy"]
+bg_color = Color(0.209879, 0.235139, 0.209965, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tyt1"]
+bg_color = Color(0.290893, 0.320572, 0.290884, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m38tk"]
+bg_color = Color(0.211765, 0.235294, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpw8l"]
+bg_color = Color(0.301498, 0.331941, 0.301488, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yev3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[node name="PlayerUI" type="CanvasLayer"]
+
+[node name="AbilitiesHBox" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -414.0
+offset_top = -133.0
+offset_right = -14.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="AbilityPanel" type="Panel" parent="AbilitiesHBox"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jqauy")
+
+[node name="AbilityPanel2" type="Panel" parent="AbilitiesHBox"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_1tyt1")
+
+[node name="AbilityPanel3" type="Panel" parent="AbilitiesHBox"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_m38tk")
+
+[node name="AbilityPanel4" type="Panel" parent="AbilitiesHBox"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpw8l")
+
+[node name="Crossair" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yev3")
+
+[node name="Crossair2" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yev3")
