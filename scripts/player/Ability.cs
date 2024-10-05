@@ -14,7 +14,7 @@ public partial class Ability : Resource
 
 	public void ActivatePressed()
 	{
-		AbilityActivated?.Invoke();;
+		AbilityActivated?.Invoke();
 	}
 
 	public void ActivateReleased()
