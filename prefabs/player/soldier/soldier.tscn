@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, -0.179157)
 near = 0.01
 
 [node name="SoldierPrimary" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler", "shootRayCast") instance=ExtResource("2_4p1pr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.291, -0.229, -1.013)
+transform = Transform3D(0.999391, 0.00121797, 0.0348782, 0, 0.999391, -0.0348995, -0.0348995, 0.0348782, 0.998782, 0.291, -0.229, -1.013)
 abilityHandler = NodePath("../../AbilityHandler")
 shootRayCast = NodePath("../ShootCast")
 bulletHole = ExtResource("3_k8gut")
