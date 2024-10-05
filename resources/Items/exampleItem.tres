@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://3lwth637acwh"]
+
+[ext_resource type="Script" path="res://scripts/Items/Item.cs" id="1_unc3k"]
+[ext_resource type="PackedScene" uid="uid://djr0u1a4m7f4b" path="res://prefabs/Items/ExampleItem.tscn" id="1_ygfxj"]
+
+[resource]
+script = ExtResource("1_unc3k")
+itemName = "Health Potion"
+itemModel = ExtResource("1_ygfxj")
+itemGrade = "Common"
