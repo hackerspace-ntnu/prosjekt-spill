@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://upgt3c3otv4x"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/BlackHole.cs" id="1_cskc6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xvrq6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu4ml"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_adcs8"]
+material = SubResource("StandardMaterial3D_tu4ml")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5br1m"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1q60"]
+transparency = 1
+albedo_color = Color(0.113281, 0.0738983, 0.0738983, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lbtj2"]
+material = SubResource("StandardMaterial3D_m1q60")
+radius = 4.0
+height = 0.2
+
+[node name="BlackHole" type="Area3D"]
+script = ExtResource("1_cskc6")
+
+[node name="BlackHoleCenter" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xvrq6")
+
+[node name="BlackHoleMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_adcs8")
+
+[node name="GravityCircle" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5br1m")
+
+[node name="BlackHoleSurround" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_lbtj2")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBlackholeBodyExited"]
