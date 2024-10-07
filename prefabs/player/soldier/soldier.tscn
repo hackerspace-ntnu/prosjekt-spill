@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://24eu7nt8kxbo" path="res://prefabs/player/PlayerUI.tscn" id="2_mnmlc"]
 [ext_resource type="PackedScene" uid="uid://02n2p823lpwy" path="res://prefabs/abilities/soldier/BulletHole.tscn" id="3_k8gut"]
 [ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="3_pwefy"]
-[ext_resource type="Resource" uid="uid://gesyv5s7ghr7" path="res://resources/classes/soldier/SoldierPrimary.tres" id="4_dqlnq"]
-[ext_resource type="Resource" uid="uid://81umvqaa531m" path="res://resources/classes/soldier/SoldierSecondary.tres" id="5_a5pmv"]
-[ext_resource type="Resource" uid="uid://cohyqpax7kycv" path="res://resources/classes/soldier/SoldierUtilOne.tres" id="6_kxnmg"]
-[ext_resource type="Resource" uid="uid://bmsou2uy3akij" path="res://resources/classes/soldier/SoldierUtilTwo.tres" id="7_e4nk5"]
-[ext_resource type="Resource" uid="uid://bid5c5dbcyfdu" path="res://resources/classes/soldier/SoldierUltimate.tres" id="8_ob2lo"]
+[ext_resource type="Resource" uid="uid://gesyv5s7ghr7" path="res://resources/classes/soldier/soldierPrimary.tres" id="4_dqlnq"]
+[ext_resource type="Resource" uid="uid://81umvqaa531m" path="res://resources/classes/soldier/soldierSecondary.tres" id="5_a5pmv"]
+[ext_resource type="Resource" uid="uid://cohyqpax7kycv" path="res://resources/classes/soldier/soldierUtilOne.tres" id="6_kxnmg"]
+[ext_resource type="Resource" uid="uid://bmsou2uy3akij" path="res://resources/classes/soldier/soldierUtilTwo.tres" id="7_e4nk5"]
+[ext_resource type="Resource" uid="uid://bid5c5dbcyfdu" path="res://resources/classes/soldier/soldierUltimate.tres" id="8_ob2lo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhgg5"]
 
@@ -49,9 +49,6 @@ secondaryAbility = ExtResource("5_a5pmv")
 utilityOneAbility = ExtResource("6_kxnmg")
 utilityTwoAbility = ExtResource("7_e4nk5")
 ultimateAbility = ExtResource("8_ob2lo")
-<<<<<<< HEAD
-=======
 primaryNodePath = NodePath("../FirstPersonCam/SoldierPrimary")
 primaryActivateMethodName = "Shoot"
 primaryDeactivateMethodName = "StoppedShooting"
->>>>>>> feature/create-general-character

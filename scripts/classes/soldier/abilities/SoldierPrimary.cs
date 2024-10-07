@@ -36,13 +36,6 @@ public partial class SoldierPrimary : Node3D
 		mainPosition = this.Position;
 		mainRotation = new Vector3(Mathf.DegToRad(2.0f), Mathf.DegToRad(2.0f), 0.0f);
 
-<<<<<<< HEAD
-		abilityHandler.primaryAbility.AbilityActivated += Shoot;
-		abilityHandler.primaryAbility.AbilityDeactivated += StoppedShooting;
-		abilityHandler.secondaryAbility.AbilityActivated += AimDownSight;
-		abilityHandler.secondaryAbility.AbilityDeactivated += HipFire;
-=======
->>>>>>> feature/create-general-character
 		timer = GetNode<Timer>("ShootCooldown");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		bulletSpawnpoint = GetNode<Marker3D>("Gun/BulletSpawnPoint");

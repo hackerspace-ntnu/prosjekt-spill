@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://upgt3c3otv4x"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/BlackHole.cs" id="1_rqa5j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xvrq6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu4ml"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_adcs8"]
+material = SubResource("StandardMaterial3D_tu4ml")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_88r4r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxwg6"]
+transparency = 1
+albedo_color = Color(0.0507812, 0.03759, 0.03759, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_grbda"]
+material = SubResource("StandardMaterial3D_dxwg6")
+
+[node name="BlackHole" type="Area3D"]
+script = ExtResource("1_rqa5j")
+
+[node name="BlackHoleCenter" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("SphereShape3D_xvrq6")
+
+[node name="BlackHoleMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("SphereMesh_adcs8")
+
+[node name="GravityCircle" type="CollisionShape3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("CylinderShape3D_88r4r")
+
+[node name="BlackHoleSurround" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("CylinderMesh_grbda")
+
+[connection signal="body_entered" from="." to="." method="OnBlackholeBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBlackholeBodyExited"]

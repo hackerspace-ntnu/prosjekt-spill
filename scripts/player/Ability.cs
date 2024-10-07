@@ -14,11 +14,7 @@ public partial class Ability : Resource
 
 	public void ActivatePressed()
 	{
-<<<<<<< HEAD
-		AbilityActivated?.Invoke();;
-=======
 		AbilityActivated?.Invoke();
->>>>>>> feature/create-general-character
 	}
 
 	public void ActivateReleased()

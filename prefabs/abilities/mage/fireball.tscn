@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhhgght1fuko6"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/Fireball.cs" id="1_nraoe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_026s2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kukl"]
+albedo_color = Color(1, 0.172549, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6htdq"]
+material = SubResource("StandardMaterial3D_2kukl")
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_nraoe")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_026s2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_6htdq")
