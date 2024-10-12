@@ -10,9 +10,15 @@ public partial class Ability : Resource
 
 	public delegate void HandleActivate();
 	public event HandleActivate AbilityActivated;
+	public event HandleActivate AbilityDeactivated;
 
-	public void Activate()
+	public void ActivatePressed()
 	{
-		AbilityActivated?.Invoke();
+		AbilityActivated?.Invoke();;
+	}
+
+	public void ActivateReleased()
+	{
+		AbilityDeactivated?.Invoke();
 	}
 }

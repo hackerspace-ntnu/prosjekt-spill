@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3qxeagwmmece"]
+[gd_scene load_steps=11 format=3 uid="uid://b3qxeagwmmece"]
 
 [ext_resource type="Texture2D" uid="uid://bc8o2xt4r6u0p" path="res://pexels-photo-413195.jpeg" id="1_fkt44"]
-[ext_resource type="Script" path="res://scripts/Items/ItemSpawner.cs" id="1_v4358"]
-[ext_resource type="PackedScene" uid="uid://cbe3voxfi3e2h" path="res://prefabs/player/soldier/soldier.tscn" id="2_8x832"]
-[ext_resource type="Resource" uid="uid://3lwth637acwh" path="res://resources/Items/exampleItem.tres" id="2_23eam"]
+[ext_resource type="PackedScene" uid="uid://cbe3voxfi3e2h" path="res://prefabs/player/soldier/Soldier.tscn" id="2_8x832"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2rwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,8 +41,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
-script = ExtResource("1_v4358")
-itemResource = ExtResource("2_23eam")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_yq1hm")
