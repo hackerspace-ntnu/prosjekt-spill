@@ -3,6 +3,7 @@ using System;
 
 public partial class AbilityHandler : Node3D
 {
+	// This is the resources for the abilities. AbilityHandler will keep track of these.
 	[ExportGroup("Character Abilities")]
 	[Export]
 	public Ability primaryAbility { get; private set; }
@@ -19,6 +20,8 @@ public partial class AbilityHandler : Node3D
 	[Export]
 	public Ability ultimateAbility { get; private set; }
 
+	// These are the main abilities, i.e each class can only have one of these at a time.
+	// In the inspector, put the method name as well as the nodepath in their designated areas.
 	[ExportGroup("Main abilities")]
 	[ExportSubgroup("Primary Main")]
 	[Export]
@@ -86,6 +89,7 @@ public partial class AbilityHandler : Node3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// Calls the respective abilities based on the inputmap.
 		if (Input.IsActionPressed("Primary"))
 		{
 			primaryAbility.ActivatePressed();
