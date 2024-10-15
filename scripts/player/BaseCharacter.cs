@@ -31,7 +31,7 @@ public partial class BaseCharacter : CharacterBody3D
 		// We retrieve the current velocity, since it is readOnly, and thus create a new "instance" of it.
 		Vector3 velocity = Velocity;
 
-		// Jump handling. IsOnFloor() is a built in function for testing wether. 
+		// Jump handling. IsOnFloor() is a built in function for testing wether the characters "feet" is colliding.
 		if (IsOnFloor() && Input.IsActionJustPressed("Jump"))
 		{
 			velocity.Y = jumpVelocity;
