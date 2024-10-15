@@ -35,7 +35,10 @@ public partial class SoldierPrimary : Node3D
 	{
 		mainPosition = this.Position;
 		mainRotation = new Vector3(Mathf.DegToRad(2.0f), Mathf.DegToRad(2.0f), 0.0f);
-
+		abilityHandler.primaryAbility.AbilityActivated += Shoot;
+		abilityHandler.primaryAbility.AbilityDeactivated += StoppedShooting;
+		abilityHandler.secondaryAbility.AbilityActivated += AimDownSight;
+		abilityHandler.secondaryAbility.AbilityDeactivated += HipFire;
 		timer = GetNode<Timer>("ShootCooldown");
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		bulletSpawnpoint = GetNode<Marker3D>("Gun/BulletSpawnPoint");
@@ -57,6 +60,11 @@ public partial class SoldierPrimary : Node3D
 			double randomY = (new Random().NextDouble() - new Random().NextDouble()) * spreadMultiplierY;
 
 			// Apply the spread to the rotation
+			spreadMultiplierY = Mathf.Min(spreadMultiplierY + 0.05f * (float) delta, 0.5f);
+			spreadMultiplierX = Mathf.Min(spreadMultiplierX + 0.05f * (float) delta, 0.4f);
+
+			float randomX = (float) new Random().NextDouble() * spreadMultiplierX;
+			double randomY = (new Random().NextDouble() - new Random().NextDouble()) * spreadMultiplierY;
 			this.Rotation = this.Rotation.Lerp(new Vector3(randomX, (float) randomY, 0.0f), t);
 			shootRayCast.Rotation = this.Rotation;
 		}
