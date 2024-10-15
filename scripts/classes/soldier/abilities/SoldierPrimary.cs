@@ -72,6 +72,12 @@ public partial class SoldierPrimary : Node3D
 		this.Position = isADS ? this.Position.Lerp(new Vector3(0.0f, -0.1f, 0.0f), t * 10f) : this.Position.Lerp(mainPosition, t * 10f);
 		this.Rotation = isADS ? this.Rotation.Lerp(Vector3.Zero, t * 10f) : this.Rotation.Lerp(mainRotation, t * 10f);
 	}
+	
+	/// <summary>
+	/// Handles shooting logic and functionality.
+	/// Spawns a bullet packedscene and instantiates it with necessary transforms.
+	/// Adds the bullet to the root of the scene.
+	/// </summary>
 	public void Shoot()
 	{
 		// From manual testing there will only be 2 bullets in the scene at a time.
