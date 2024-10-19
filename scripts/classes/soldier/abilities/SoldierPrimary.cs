@@ -35,7 +35,6 @@ public partial class SoldierPrimary : Node3D
 	{
 		mainPosition = this.Position;
 		mainRotation = new Vector3(Mathf.DegToRad(2.0f), Mathf.DegToRad(2.0f), 0.0f);
-
 		abilityHandler.primaryAbility.AbilityActivated += Shoot;
 		abilityHandler.primaryAbility.AbilityDeactivated += StoppedShooting;
 		abilityHandler.secondaryAbility.AbilityActivated += AimDownSight;
@@ -47,20 +46,26 @@ public partial class SoldierPrimary : Node3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// Time variable to lerp between.
 		float t = 2f * (float) delta;
 
 		if (isShooting)
 		{
+			// Spread multiplier for x and y axis
 			spreadMultiplierY = Mathf.Min(spreadMultiplierY + 0.05f * (float) delta, 0.5f);
 			spreadMultiplierX = Mathf.Min(spreadMultiplierX + 0.05f * (float) delta, 0.4f);
 
+			// New "random" x and y rotation.
 			float randomX = (float) new Random().NextDouble() * spreadMultiplierX;
 			double randomY = (new Random().NextDouble() - new Random().NextDouble()) * spreadMultiplierY;
+
+			// Apply the spread to the rotation
 			this.Rotation = this.Rotation.Lerp(new Vector3(randomX, (float) randomY, 0.0f), t);
 			shootRayCast.Rotation = this.Rotation;
 		}
 		else 
 		{
+			// Return to normal rotation
 			spreadMultiplierY = Mathf.Max(0.0f, spreadMultiplierY - 0.5f * (float) delta);
 			spreadMultiplierX = Mathf.Max(0.0f, spreadMultiplierX - 0.5f * (float) delta);
 			this.Rotation = this.Rotation.Lerp(mainRotation, t * 2f);
@@ -69,17 +74,13 @@ public partial class SoldierPrimary : Node3D
 
 		this.Position = isADS ? this.Position.Lerp(new Vector3(0.0f, -0.1f, 0.0f), t * 10f) : this.Position.Lerp(mainPosition, t * 10f);
 		this.Rotation = isADS ? this.Rotation.Lerp(Vector3.Zero, t * 10f) : this.Rotation.Lerp(mainRotation, t * 10f);
-		// This section is used for debugging amount
-		// int count = 0;
-		// Node root = GetTree().Root;
-		// foreach(Node child in root.GetChildren())
-		// {
-		// 	if (child is BulletHole)
-		// 		count++;
-		// }
-
-		// GD.Print("BulletHole scenes: ", count);
 	}
+	
+	/// <summary>
+	/// Handles shooting logic and functionality.
+	/// Spawns a bullet packedscene and instantiates it with necessary transforms.
+	/// Adds the bullet to the root of the scene.
+	/// </summary>
 	public void Shoot()
 	{
 		// From manual testing there will only be 2 bullets in the scene at a time.
