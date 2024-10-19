@@ -20,7 +20,7 @@ public partial class MageWaterWall : Node3D
 	{
 		// Get cooldown timer and spell spawn point from the staff
 		timer = GetNode<Timer>("CastCooldown");
-		waterWallSpawnpoint = GetNode<Marker3D>("Staff/WaterWallSpawnpoint");
+		waterWallSpawnpoint = GetNode<Marker3D>("WaterWallSpawnpoint");
 
 		// Connect Timer timeout to canShoot method
 		timer.Timeout += CanShoot;

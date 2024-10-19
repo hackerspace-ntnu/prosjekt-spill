@@ -7,8 +7,6 @@
 script = ExtResource("1_fttt7")
 waterWallScene = ExtResource("2_lpao1")
 
-[node name="Staff" type="Node3D" parent="."]
-
-[node name="WaterWallSpawnpoint" type="Marker3D" parent="Staff"]
+[node name="WaterWallSpawnpoint" type="Marker3D" parent="."]
 
 [node name="CastCooldown" type="Timer" parent="."]
