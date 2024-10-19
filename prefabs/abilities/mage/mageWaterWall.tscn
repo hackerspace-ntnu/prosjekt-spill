@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dan3hgosqk27o"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/MageWaterWall.cs" id="1_fttt7"]
+[ext_resource type="PackedScene" uid="uid://2imml4co3gak" path="res://prefabs/abilities/mage/waterWall.tscn" id="2_lpao1"]
+
+[node name="mageWaterWall" type="Node3D"]
+script = ExtResource("1_fttt7")
+waterWallScene = ExtResource("2_lpao1")
+
+[node name="Staff" type="Node3D" parent="."]
+
+[node name="WaterWallSpawnpoint" type="Marker3D" parent="Staff"]
+
+[node name="CastCooldown" type="Timer" parent="."]
