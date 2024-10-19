@@ -49,8 +49,6 @@ public partial class IceSpell : Area3D  // Inherit from Area3D to detect collisi
     {
         if (body is RigidBody3D)
         {
-            GD.Print("Hit RigidBody3D " + body.Name);
-
             // Apply freeze effect to enemy
             var enemy = body as RigidBody3D;
             FreezeEnemy(enemy);

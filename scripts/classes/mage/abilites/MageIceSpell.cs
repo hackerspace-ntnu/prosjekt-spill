@@ -20,7 +20,7 @@ public partial class MageIceSpell : Node3D
 	{
 		// Get cooldown timer and spell spawn point from the staff
 		timer = GetNode<Timer>("CastCooldown");
-		iceSpellSpawnpoint = GetNode<Marker3D>("Staff/IceSpellSpawnpoint");
+		iceSpellSpawnpoint = GetNode<Marker3D>("IceSpellSpawnpoint");
 
 		// Connect Timer timeout to canShoot method
 		timer.Timeout += CanShoot;
