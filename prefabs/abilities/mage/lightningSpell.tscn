@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdlb8j7ld3e1a"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/LightningSpell.cs" id="1_tstb7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mkvmy"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yij6"]
+albedo_color = Color(0.544411, 0.974609, 0.974609, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_del0d"]
+material = SubResource("StandardMaterial3D_3yij6")
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_loykm"]
+radius = 5.0
+
+[node name="LightningSpell" type="Area3D"]
+script = ExtResource("1_tstb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_mkvmy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_del0d")
+
+[node name="EffectRadius" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_loykm")
