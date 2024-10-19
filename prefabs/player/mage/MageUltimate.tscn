@@ -1,13 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://cevc7gjgtp1a8"]
 
 [ext_resource type="Script" path="res://scripts/classes/mage/abilites/MageUltimate.cs" id="1_l87c5"]
-[ext_resource type="PackedScene" uid="uid://bk8n2tryglca7" path="res://prefabs/abilities/mage/black_hole.tscn" id="2_x4tn3"]
+[ext_resource type="PackedScene" uid="uid://upgt3c3otv4x" path="res://prefabs/abilities/mage/blackHole.tscn" id="2_x4tn3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilo3x"]
-albedo_color = Color(0.326172, 0.203857, 0.203857, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8fy1"]
+albedo_color = Color(0.193359, 0.136593, 0.123493, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_v3lbr"]
-material = SubResource("StandardMaterial3D_ilo3x")
+[sub_resource type="SphereMesh" id="SphereMesh_vkcju"]
+material = SubResource("StandardMaterial3D_t8fy1")
+radius = 0.2
+height = 0.5
+radial_segments = 10
+rings = 10
 
 [node name="MageUltimate" type="Node3D"]
 script = ExtResource("1_l87c5")
@@ -16,8 +20,7 @@ blackholeScene = ExtResource("2_x4tn3")
 [node name="Staff" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Staff"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("BoxMesh_v3lbr")
+mesh = SubResource("SphereMesh_vkcju")
 skeleton = NodePath("../..")
 
 [node name="BlackholeSpawnpoint" type="Marker3D" parent="Staff"]

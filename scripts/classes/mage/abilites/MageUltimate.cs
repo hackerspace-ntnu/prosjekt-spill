@@ -44,7 +44,7 @@ public partial class MageUltimate : Node3D
 			blackhole.GlobalTransform = blackholeSpawnpoint.GlobalTransform;
 			
 			// Set the blackhole direction based on the RayCast3D or forward direction
-			SetFireballDirection(blackhole);
+			SetBlackholeDirection(blackhole);
 
 			// Add the blackhole to the scene
 			GetTree().Root.AddChild(blackhole);
@@ -55,7 +55,7 @@ public partial class MageUltimate : Node3D
 		}
 	}
 
-	private void SetFireballDirection(Node3D blackhole)
+	private void SetBlackholeDirection(Node3D blackhole)
 	{
 			// Get the collision point and calculate direction from blackhole spawn to collision point
 			Vector3 targetPosition = shootRayCast.GetCollisionPoint();
@@ -67,7 +67,7 @@ public partial class MageUltimate : Node3D
 			// Cast and set direction from blackhole Script
 			if (blackhole is BlackHole blackholeScript)
 			{
-				blackholeScript.SetDirection(direction);
+				//blackholeScript.SetDirection(direction);
 			}
 		
 	}
