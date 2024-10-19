@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnaklxsqx151s"]
+
+[ext_resource type="Script" path="res://Ant.cs" id="1_icjgn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpi51"]
+albedo_color = Color(0.416406, 0.126831, 0.0429176, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y057m"]
+material = SubResource("StandardMaterial3D_fpi51")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2l2"]
+
+[node name="Ant" type="CharacterBody3D"]
+script = ExtResource("1_icjgn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941884, 0)
+mesh = SubResource("CapsuleMesh_y057m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.946572, 0)
+shape = SubResource("CapsuleShape3D_1v2l2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
