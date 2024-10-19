@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpl3bi2r2pf8d"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/MageIceSpell.cs" id="1_puq5a"]
+[ext_resource type="PackedScene" uid="uid://b8u4opggtngpj" path="res://prefabs/abilities/mage/iceSpell.tscn" id="2_x0awa"]
+
+[node name="mageIceSpell" type="Node3D"]
+script = ExtResource("1_puq5a")
+iceSpellScene = ExtResource("2_x0awa")
+
+[node name="Staff" type="Node3D" parent="."]
+
+[node name="IceSpellSpawnpoint" type="Marker3D" parent="Staff"]
+
+[node name="CastCooldown" type="Timer" parent="."]

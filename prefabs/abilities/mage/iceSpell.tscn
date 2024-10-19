@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8u4opggtngpj"]
+
+[ext_resource type="Script" path="res://scripts/classes/mage/abilites/IceSpell.cs" id="1_ra0qc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k0qxx"]
+size = Vector3(2, 0.5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uts4i"]
+albedo_color = Color(0.0823529, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shcg6"]
+material = SubResource("StandardMaterial3D_uts4i")
+size = Vector3(2, 0.5, 5)
+
+[node name="IceSpell" type="Area3D"]
+script = ExtResource("1_ra0qc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_k0qxx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_shcg6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
