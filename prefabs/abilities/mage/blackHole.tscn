@@ -31,10 +31,10 @@ shape = SubResource("SphereShape3D_xvrq6")
 [node name="BlackHoleMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_adcs8")
 
-[node name="GravityCircle" type="CollisionShape3D" parent="."]
+[node name="GravitationPullRadius" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5br1m")
 
-[node name="BlackHoleSurround" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_lbtj2")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
