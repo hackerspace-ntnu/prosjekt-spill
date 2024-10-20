@@ -26,16 +26,12 @@ public partial class Fireball : Area3D  // Inherit from Area3D to detect collisi
 			// Move the spell towards the target
 			Position += direction * speed * (float)delta;
 
-			if (Position.DistanceTo(targetPosition) <= 0.1f){
+			if (Position.DistanceTo(targetPosition) <= 0.1f)
+			{
 				isMoving = false; // Stop when moving the target
 				QueueFree(); // Destroy spell when done/hit target
 			}
 		}
-	}
-
-	public void SetDirection(Vector3 dir)
-	{
-		direction = dir.Normalized();  // Normalize the direction vector
 	}
 
 	private void OnFireballBodyEntered(Node3D body)
