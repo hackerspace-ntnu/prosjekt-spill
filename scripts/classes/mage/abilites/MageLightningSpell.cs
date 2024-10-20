@@ -5,10 +5,8 @@ public partial class MageLightningSpell : Node3D
 {
 	[Export]
 	private AbilityHandler abilityHandler;
-
 	[Export]
 	private PackedScene lightningSpellScene;
-
 	private Timer timer;
 	private Marker3D lightningSpawnpoint;
 
