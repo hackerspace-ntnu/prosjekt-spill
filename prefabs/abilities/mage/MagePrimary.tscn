@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d04iohal6tlm8"]
 
 [ext_resource type="Script" path="res://scripts/classes/mage/abilites/MagePrimary.cs" id="1_40e33"]
-[ext_resource type="PackedScene" uid="uid://dhhgght1fuko6" path="res://prefabs/player/mage/fireball.tscn" id="2_vsxuc"]
+[ext_resource type="PackedScene" uid="uid://o4uhuoqf8a8o" path="res://prefabs/abilities/mage/fireball.tscn" id="2_laobi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v6mi"]
 albedo_color = Color(0.760784, 0.52549, 0.137255, 1)
@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_3v6mi")
 
 [node name="MagePrimary" type="Node3D"]
 script = ExtResource("1_40e33")
-fireballScene = ExtResource("2_vsxuc")
+fireballScene = ExtResource("2_laobi")
 
 [node name="Staff" type="Node3D" parent="."]
 
@@ -20,6 +20,6 @@ transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 1.1987, 0)
 mesh = SubResource("TubeTrailMesh_ig2oa")
 
 [node name="FireballSpawnPoint" type="Marker3D" parent="Staff"]
-transform = Transform3D(0.1, -3.49246e-09, -2.08616e-08, 3.49246e-09, 0.1, -2.38419e-09, 2.08616e-08, 2.38419e-09, 0.1, 0.5, 1.697, 0.024)
+transform = Transform3D(1, -3.49246e-08, -2.08616e-07, 3.49246e-08, 1, -2.38419e-08, 2.08616e-07, 2.38419e-08, 1, 0, 1.68589, 0)
 
 [node name="CastCooldown" type="Timer" parent="."]

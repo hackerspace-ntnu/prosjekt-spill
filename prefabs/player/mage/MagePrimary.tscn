@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://sfbyrowo2oq1"]
 
 [ext_resource type="Script" path="res://scripts/classes/mage/abilites/MagePrimary.cs" id="1_40e33"]
-[ext_resource type="PackedScene" uid="uid://dhhgght1fuko6" path="res://prefabs/abilities/mage/fireball.tscn" id="2_yghda"]
+[ext_resource type="PackedScene" uid="uid://o4uhuoqf8a8o" path="res://prefabs/abilities/mage/fireball.tscn" id="2_yghda"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v6mi"]
 albedo_color = Color(0.760784, 0.52549, 0.137255, 1)
