@@ -1,17 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7wku2yk145pw"]
+[gd_scene load_steps=16 format=3 uid="uid://c7wku2yk145pw"]
 
 [ext_resource type="Script" path="res://scripts/player/BaseCharacter.cs" id="1_6avmp"]
 [ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="2_44sbu"]
-[ext_resource type="PackedScene" uid="uid://cevc7gjgtp1a8" path="res://prefabs/player/mage/MageUltimate.tscn" id="3_ma1mm"]
-[ext_resource type="PackedScene" uid="uid://sfbyrowo2oq1" path="res://prefabs/player/mage/MagePrimary.tscn" id="3_ts786"]
+[ext_resource type="PackedScene" uid="uid://cevc7gjgtp1a8" path="res://prefabs/abilities/mage/MageUltimate.tscn" id="3_ma1mm"]
+[ext_resource type="PackedScene" uid="uid://sfbyrowo2oq1" path="res://prefabs/abilities/mage/MagePrimary.tscn" id="3_ts786"]
 [ext_resource type="Resource" uid="uid://bcy2tjomnunqi" path="res://resources/classes/mage/magePrimary.tres" id="4_5x8pc"]
-[ext_resource type="Resource" uid="uid://81umvqaa531m" path="res://resources/classes/soldier/soldierSecondary.tres" id="4_weifl"]
-[ext_resource type="Resource" uid="uid://bid5c5dbcyfdu" path="res://resources/classes/soldier/soldierUltimate.tres" id="5_w3kbd"]
-[ext_resource type="Resource" uid="uid://cohyqpax7kycv" path="res://resources/classes/soldier/soldierUtilOne.tres" id="6_imxru"]
+[ext_resource type="PackedScene" uid="uid://bpl3bi2r2pf8d" path="res://prefabs/abilities/mage/mageIceSpell.tscn" id="4_tcrt8"]
+[ext_resource type="PackedScene" uid="uid://dan3hgosqk27o" path="res://prefabs/abilities/mage/mageWaterWall.tscn" id="5_ogacp"]
+[ext_resource type="PackedScene" uid="uid://tewoi4n1i30x" path="res://prefabs/abilities/mage/mageLightningSpell.tscn" id="6_cmfmc"]
+[ext_resource type="Resource" uid="uid://bg2sjhgc54twe" path="res://resources/classes/mage/mageIceSpell.tres" id="8_hliy2"]
 [ext_resource type="Resource" uid="uid://bv8vl7mpyyne8" path="res://resources/classes/mage/mageUltimate.tres" id="9_1xptv"]
+[ext_resource type="Resource" uid="uid://b4c2geehj6rmp" path="res://resources/classes/mage/mageWaterWall.tres" id="9_6amn8"]
 [ext_resource type="PackedScene" uid="uid://24eu7nt8kxbo" path="res://prefabs/player/PlayerUI.tscn" id="9_xnkuj"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_oq8l4"]
+[ext_resource type="PackedScene" uid="uid://bxe3h7i4g6gvw" path="res://assets/models/mage/mage.glb" id="11_f63q5"]
+[ext_resource type="Resource" uid="uid://dtmpxfw8ip8nh" path="res://resources/classes/mage/mageLightningSpell.tres" id="11_i42sm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d01sh"]
 
@@ -20,41 +22,56 @@ script = ExtResource("1_6avmp")
 sens = 0.2
 abilityHandler = NodePath("Abilityhandler")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_oq8l4")
-skeleton = NodePath("")
+[node name="mage" parent="." instance=ExtResource("11_f63q5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3958, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.424572, 0)
 shape = SubResource("CapsuleShape3D_d01sh")
 
 [node name="FirstPersonCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, -0.179157)
 near = 0.01
 
-[node name="MagePrimary" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler", "shootRayCast") instance=ExtResource("3_ts786")]
-transform = Transform3D(0.108485, 0, 0.994098, -0.327319, 0.944239, 0.0357201, -0.938666, -0.329262, 0.102436, 0.465637, -1.44359, -0.658825)
+[node name="MagePrimary" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("3_ts786")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.465637, -1.44359, -0.658825)
 abilityHandler = NodePath("../../Abilityhandler")
-shootRayCast = NodePath("../ShootCast")
 
-[node name="ShootCast" type="RayCast3D" parent="FirstPersonCam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.323256)
-target_position = Vector3(0, 0, -100)
-
-[node name="MageUltimate" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler", "shootRayCast") instance=ExtResource("3_ma1mm")]
-transform = Transform3D(0.0249207, 0, 0.999689, 0, 1, 0, -0.999689, 0, 0.0249207, -0.724592, 0, -0.714963)
+[node name="MageUltimate" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("3_ma1mm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724592, 0, -0.714963)
 abilityHandler = NodePath("../../Abilityhandler")
-shootRayCast = NodePath("../ShootCast")
+
+[node name="mageIceSpell" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("4_tcrt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00902346, 0.131471, -1.26918)
+abilityHandler = NodePath("../../Abilityhandler")
+
+[node name="mageWaterWall" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("5_ogacp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00678298, 0.131471, -1.26918)
+abilityHandler = NodePath("../../Abilityhandler")
+
+[node name="MageLightningSpell" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("6_cmfmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00339875, 0.131471, -1.26918)
+abilityHandler = NodePath("../../Abilityhandler")
 
 [node name="Abilityhandler" type="Node3D" parent="."]
 script = ExtResource("2_44sbu")
 primaryAbility = ExtResource("4_5x8pc")
-secondaryAbility = ExtResource("4_weifl")
-utilityOneAbility = ExtResource("5_w3kbd")
-utilityTwoAbility = ExtResource("6_imxru")
+secondaryAbility = ExtResource("8_hliy2")
+utilityOneAbility = ExtResource("9_6amn8")
+utilityTwoAbility = ExtResource("11_i42sm")
 ultimateAbility = ExtResource("9_1xptv")
 primaryNodePath = NodePath("../FirstPersonCam/MagePrimary")
 primaryActivateMethodName = "Shoot"
 primaryDeactivateMethodName = "StoppedShooting"
+secondaryNodePath = NodePath("../FirstPersonCam/mageIceSpell")
+secondaryActivateMethodName = "Shoot"
+secondaryDeactivateMethodName = "StoppedShooting"
+utilityOneNodePath = NodePath("../FirstPersonCam/mageWaterWall")
+utilityOneActivateMethodName = "Shoot"
+utilityOneDeactivateMethodName = "StoppedShooting"
+utilityTwoNodePath = NodePath("../FirstPersonCam/MageLightningSpell")
+utilityTwoActivateMethodName = "Shoot"
+utilityTwoDeactivateMethodName = "StoppedShooting"
 ultimateNodePath = NodePath("../FirstPersonCam/MageUltimate")
 ultimateActivateMethodName = "Shoot"
 ultimateDeactivateMethodName = "StoppedShooting"

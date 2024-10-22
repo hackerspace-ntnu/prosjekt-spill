@@ -66,7 +66,6 @@ public partial class LightningSpell : Area3D // Inherit from Area 3D to detect c
             delayTimer.OneShot = true;
             delayTimer.Timeout += () => QueueFree();
             delayTimer.Start();
-
         }
     }
 
