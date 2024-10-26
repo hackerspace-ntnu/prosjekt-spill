@@ -5,6 +5,8 @@ public partial class IceSpell : Area3D  // Inherit from Area3D to detect collisi
 {
 	[Export]
 	public float speed = 8.0f; // Speed of the ice spell
+    [Export]
+    public float damage = 20.0f;
     public Vector3 targetPosition;
 	private Vector3 direction; // Direction to move in
 	private bool isMoving = true; // To control if the ice spell should move
@@ -28,7 +30,6 @@ public partial class IceSpell : Area3D  // Inherit from Area3D to detect collisi
 
         // Connect the body entered and exited signals
 		BodyEntered += OnBodyEntered;
-
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -55,6 +56,12 @@ public partial class IceSpell : Area3D  // Inherit from Area3D to detect collisi
 
             // Start timer to unfreeze after set time
             freezeTimer.Start();
+        }
+        
+        if (body is BaseCharacter characterBody)
+        {
+            // Apply damage
+            characterBody.takeDamage(damage);
         }
     }
 

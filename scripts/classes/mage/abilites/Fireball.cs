@@ -4,6 +4,9 @@ public partial class Fireball : Area3D  // Inherit from Area3D to detect collisi
 {
 	[Export]
 	public float speed = 10.0f; // Speed of the fireball
+
+	[Export]
+	public float damage = 25.0f; // Damage of fireball spell
 	public Vector3 targetPosition;
 	private Vector3 direction;  // Direction to move in
 	private bool isMoving = true; // To control if the fireball should move
@@ -39,5 +42,11 @@ public partial class Fireball : Area3D  // Inherit from Area3D to detect collisi
 		// Stop the fireball when it hits something
 		isMoving = false;
 		QueueFree();  // Remove the fireball after hitting something
+
+		if (body is BaseCharacter characterBody)
+		{
+			// Calls takeDamage method on hit character body
+			characterBody.takeDamage(damage);
+		}
 	}
 }

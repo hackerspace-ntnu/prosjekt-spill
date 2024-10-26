@@ -4,15 +4,31 @@ using System.Collections.Generic;
 
 public partial class BlackHole : Area3D
 {
-	[Export] public Vector3 origin = Vector3.Zero;  // Origin of the force
-	[Export] public float pullStrength = 10.0f;       // The strength of the pulling force
-	[Export]public float speed = 5.0f; // Speed that blackhole moves
-	public Vector3 targetPosition;
-	private Vector3 direction;  // Direction to move in
-	private bool isMoving = true; // To control if the blackhole should move
-	private CollisionShape3D gravitationalPullRadius; 
+	[Export]
+	public Vector3 origin = Vector3.Zero;  // Origin of the force
 
+	[Export]
+	public float pullStrength = 10.0f; // The strength of the pulling force
+
+	[Export]
+	public float speed = 5.0f; // Speed that blackhole moves
+
+	[Export]
+	public float damage = 5.0f; // Damage done per tick
+
+	[Export]
+	public float damageTicker = 0.5f; // Time (seconds) between each tick
+
+	// Move attributes
+	public Vector3 targetPosition;
+	private Vector3 direction;  
+	private bool isMoving = true; 
+
+	// Effect attributes
+	private CollisionShape3D gravitationalPullRadius; 
 	private List<RigidBody3D> affectedBodies = new List<RigidBody3D>(); //List to track affected bodies
+	private List<BaseCharacter> affectedCharacters = new List<BaseCharacter>(); // List to track characters in area
+	private Timer damageTimer;
 
 	public override void _Ready()
 	{
@@ -27,6 +43,13 @@ public partial class BlackHole : Area3D
 		// Get the CollisionShape3D for effect radius and disable until target hit
 		gravitationalPullRadius = GetNode<CollisionShape3D>("GravitationPullRadius");
 		gravitationalPullRadius.SetDeferred("disabled", true); // Disable the CollisionShape3D
+
+		// Set up damage timer
+		damageTimer = new Timer();
+		damageTimer.WaitTime = damageTicker;
+		damageTimer.OneShot = false;
+		damageTimer.Connect("timeout", new Callable(this, nameof(OnDamageTick)));
+		AddChild(damageTimer);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -67,6 +90,20 @@ public partial class BlackHole : Area3D
 		{
 			// Add the entering body to the affected list
 			affectedBodies.Add(rigidBody);
+		} 
+		
+		if (body is BaseCharacter character)
+		{
+			// Add characters to affected list and start timer if not running
+			if (!affectedCharacters.Contains(character)) //Avoid duplicates in list
+			{
+				affectedCharacters.Add(character);
+
+				if (damageTimer.IsStopped())
+				{
+					damageTimer.Start();
+				}
+			}
 		}
 	}
 
@@ -77,6 +114,27 @@ public partial class BlackHole : Area3D
 		{
 			//Remove the body from the affected list
 			affectedBodies.Remove(rigidBody);
+		} 
+		
+		if (body is BaseCharacter character)
+		{
+			if (affectedCharacters.Contains(character))
+			{
+				affectedCharacters.Remove(character);
+			}
+			
+			if (affectedCharacters.Count == 0 && !damageTimer.IsStopped())
+			{
+				damageTimer.Stop();
+			}
+		}
+	}
+
+	public void OnDamageTick()
+	{
+		foreach (BaseCharacter character in affectedCharacters.ToArray())
+		{
+			character.takeDamage(damage);
 		}
 	}
 

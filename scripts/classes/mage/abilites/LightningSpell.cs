@@ -8,7 +8,8 @@ public partial class LightningSpell : Area3D // Inherit from Area 3D to detect c
     public float effectRadius = 10.0f; // Radius for which lightning spell can affect other bodies
     [Export]
     public float delayBeforeFree = 0.5f; // Delay before QueueFree to let effect finish
-
+    [Export]
+    public float damage = 30.0f;
     public Vector3 targetPosition;
     private CollisionShape3D effectRadiusShape; // Referance to effectRadius collision shape
     private Vector3 direction; // Direction to move in
@@ -66,6 +67,10 @@ public partial class LightningSpell : Area3D // Inherit from Area 3D to detect c
             delayTimer.OneShot = true;
             delayTimer.Timeout += () => QueueFree();
             delayTimer.Start();
+        } else if (body is BaseCharacter characterBody)
+        {
+            // Apply damage to characters with BaseCharacter
+            characterBody.takeDamage(damage);
         }
     }
 
