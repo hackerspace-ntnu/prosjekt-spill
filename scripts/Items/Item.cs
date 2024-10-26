@@ -6,23 +6,23 @@ using Godot.Collections;
 public partial class Item : Resource
 {
 	[ExportGroup("Item properties")]
-	[Export] public string itemName { set; get; }
+	[Export] public string itemName { private set; get; }
 	[Export(PropertyHint.Enum, "Common,Rare,Legendary")]
 
-	public string itemGrade { set; get; }
+	public string itemGrade { private set; get; }
 	
 	[ExportGroup("Item visuals")]
-	[Export] public Texture itemImage { set; get; }
-	[Export] public PackedScene itemModel { set; get; }
+	[Export] public Texture itemImage { private set; get; }
+	[Export] public PackedScene itemModel { private set; get; }
 	
 	// Conditional rendering of inspector elements is difficult. Will see if i can convert to costum plugin later
 	[ExportGroup("Class Specificity")]
-	private bool _classSpecific;
+	public bool _classSpecific;
 	[Export]
 	public bool ClassSpecific
 	{
 		get => _classSpecific;
-		set
+		private set
 		{
 			_classSpecific = value;
 			NotifyPropertyListChanged();
@@ -30,7 +30,7 @@ public partial class Item : Resource
 	}
 
 	[Export(PropertyHint.Enum, "Soldier,Melee,Mage,Engineer")]
-	public string ItemClass { set; get; }
+	public string ItemClass { private set; get; }
 
 	public override void _ValidateProperty(Dictionary property)
 	{
