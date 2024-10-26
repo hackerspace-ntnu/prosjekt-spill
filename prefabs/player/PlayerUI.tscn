@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://24eu7nt8kxbo"]
+[gd_scene load_steps=7 format=3 uid="uid://24eu7nt8kxbo"]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerUi.cs" id="1_5rndb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqauy"]
 bg_color = Color(0.209879, 0.235139, 0.209965, 1)
@@ -25,7 +27,9 @@ corner_radius_top_right = 90
 corner_radius_bottom_right = 90
 corner_radius_bottom_left = 90
 
-[node name="PlayerUI" type="CanvasLayer"]
+[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("HPbar")]
+script = ExtResource("1_5rndb")
+HPbar = NodePath("ProgressBar")
 
 [node name="AbilitiesHBox" type="HBoxContainer" parent="."]
 anchors_preset = 3
@@ -98,3 +102,12 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3yev3")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 866.0
+offset_top = 570.0
+offset_right = 1198.0
+offset_bottom = 597.0
+step = 1.0
+value = 100.0
+rounded = true

@@ -16,14 +16,35 @@ public partial class BaseCharacter : CharacterBody3D
 	[Export]
 	public AbilityHandler abilityHandler { get; private set; }
 
+	[Export]
+	private float maxHealth = 100.0f;
+	private float currentHealth;
+
+	[Export]
+	private float defense = 1.0f;
+
+	[Signal]
+	public delegate void PlayerTookDamageEventHandler(float damageAmount);
+
+	[Signal]
+	public delegate void UpdateMaxHealthEventHandler(float maxHealth);
+
+
 	// OnReadys
 	private Camera3D camera;
 	private bool escape = false;
+
+	private double counter = 0;
 
 	public override void _Ready()
 	{
 		camera = GetNode<Camera3D>("FirstPersonCam");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+
+		EmitSignal(SignalName.UpdateMaxHealth, maxHealth);
+
+		// Set health to chosen max health
+		currentHealth = maxHealth;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -81,5 +102,35 @@ public partial class BaseCharacter : CharacterBody3D
 		float addedSpeed = Mathf.Max(2*speed/3 - currentSpeed, 0);
 		float acceleratedSpeed = Mathf.Min(2*speed/3 * 10 * (float) delta, addedSpeed);
 		return currentVelocity + acceleratedSpeed * wishDirection;
+	}
+
+	// Function for handling damage done to character
+	public void takeDamage(float damageAmount)
+	{
+
+		EmitSignal(SignalName.PlayerTookDamage, damageAmount);
+		currentHealth -= damageAmount * defense;
+		if (currentHealth <= 0)
+		{
+			currentHealth = 0;
+			characterDeath();
+		}
+	}
+
+	public void heal(float healAmount)
+	{
+		currentHealth += healAmount;
+		if (currentHealth > maxHealth)
+		{
+			currentHealth = maxHealth;
+		}
+	}
+
+
+	// Function for handling dead characters
+	public void characterDeath()
+	{
+		GD.Print("Character is dead!");
+		// Set death happenings: QueueFree, animation
 	}
 }

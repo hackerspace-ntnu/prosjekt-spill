@@ -21,6 +21,7 @@
 script = ExtResource("1_6avmp")
 sens = 0.2
 abilityHandler = NodePath("Abilityhandler")
+maxHealth = 200.0
 
 [node name="mage" parent="." instance=ExtResource("11_f63q5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3958, 0)
@@ -77,3 +78,6 @@ ultimateActivateMethodName = "Shoot"
 ultimateDeactivateMethodName = "StoppedShooting"
 
 [node name="PlayerUI" parent="." instance=ExtResource("9_xnkuj")]
+
+[connection signal="PlayerTookDamage" from="." to="PlayerUI" method="takingDamage"]
+[connection signal="UpdateMaxHealth" from="." to="PlayerUI" method="updateMaxHealth"]
