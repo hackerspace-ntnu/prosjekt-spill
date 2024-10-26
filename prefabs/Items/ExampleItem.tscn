@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://djr0u1a4m7f4b"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_ablpw"]
+script/source = "using Godot;
+
+public partial class ExampleItem : Node
+{
+	//Potion example item for testing
+	const potion = 0;
+}
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vc3m7"]
+radius = 0.423721
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7kutv"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wdcc"]
+albedo_color = Color(0.933282, 0.000439771, 5.77569e-07, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fgy22"]
+top_radius = 0.12
+bottom_radius = 0.12
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pm1x"]
+shading_mode = 2
+albedo_color = Color(0.464754, 0.217282, 2.88785e-07, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_d5c7n"]
+radius = 0.3
+height = 0.6
+
+[node name="ExampleItem" type="Node3D"]
+script = SubResource("CSharpScript_ablpw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111056, 0)
+shape = SubResource("SphereShape3D_vc3m7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338973, 0)
+mesh = SubResource("CylinderMesh_7kutv")
+surface_material_override/0 = SubResource("StandardMaterial3D_8wdcc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457829, 0)
+mesh = SubResource("CylinderMesh_fgy22")
+surface_material_override/0 = SubResource("StandardMaterial3D_7pm1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_d5c7n")
+surface_material_override/0 = SubResource("StandardMaterial3D_8wdcc")

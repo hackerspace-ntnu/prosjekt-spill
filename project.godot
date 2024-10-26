@@ -29,6 +29,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="prosjekt-spill-hs"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/InspectorPlugin/plugin.cfg")
+
 [input]
 
 Forward={
