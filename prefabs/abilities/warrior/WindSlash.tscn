@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn3r8xxi32pyx"]
+
+[ext_resource type="Script" path="res://scripts/classes/warrior/abilities/WindSlash.cs" id="1_4vx27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3j8w6"]
+size = Vector3(0.2, 1.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vvgu"]
+albedo_color = Color(0.615234, 1, 0.941383, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pwofd"]
+material = SubResource("StandardMaterial3D_6vvgu")
+size = Vector3(0.2, 1.5, 0.5)
+
+[node name="windSlash" type="Area3D"]
+script = ExtResource("1_4vx27")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3j8w6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pwofd")

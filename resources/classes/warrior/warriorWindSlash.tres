@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxd0nhw4xp03g"]
+
+[ext_resource type="Script" path="res://scripts/player/Ability.cs" id="1_tk17h"]
+
+[resource]
+script = ExtResource("1_tk17h")
