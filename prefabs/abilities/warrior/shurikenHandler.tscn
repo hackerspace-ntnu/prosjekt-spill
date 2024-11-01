@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4fh2lmoxr26e"]
+
+[ext_resource type="Script" path="res://scripts/classes/warrior/abilities/ShurikenHandler.cs" id="1_b04om"]
+[ext_resource type="PackedScene" uid="uid://dlw1w66y1xxq5" path="res://prefabs/abilities/warrior/shuriken.tscn" id="2_dod6k"]
+
+[node name="ShurikenHandler" type="Node3D"]
+script = ExtResource("1_b04om")
+shurikenScene = ExtResource("2_dod6k")
+
+[node name="ShurikenSpawnPoint" type="Marker3D" parent="."]
+
+[node name="CastCooldown" type="Timer" parent="."]

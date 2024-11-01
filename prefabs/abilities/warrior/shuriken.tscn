@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlw1w66y1xxq5"]
+
+[ext_resource type="Script" path="res://scripts/classes/warrior/abilities/Shuriken.cs" id="1_18oyq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lggme"]
+size = Vector3(0.5, 0.05, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lvcy"]
+albedo_color = Color(0.1996, 0.804688, 0.485599, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b6ta0"]
+material = SubResource("StandardMaterial3D_1lvcy")
+size = Vector3(0.5, 0.05, 0.5)
+
+[node name="Shuriken" type="Area3D"]
+script = ExtResource("1_18oyq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lggme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_b6ta0")
