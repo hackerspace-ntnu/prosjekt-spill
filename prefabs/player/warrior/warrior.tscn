@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://2fturnj0yila"]
+
+[ext_resource type="Script" path="res://scripts/player/BaseCharacter.cs" id="1_10sbl"]
+[ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="1_g3ijq"]
+[ext_resource type="PackedScene" uid="uid://c4fh2lmoxr26e" path="res://prefabs/abilities/warrior/shurikenHandler.tscn" id="2_cn0nn"]
+[ext_resource type="Resource" uid="uid://cxd0nhw4xp03g" path="res://resources/classes/warrior/warriorWindSlash.tres" id="3_6up0e"]
+[ext_resource type="PackedScene" uid="uid://cn0rtc7u1i7k8" path="res://prefabs/abilities/warrior/warriorSlashSpellHandler.tscn" id="3_dx1mm"]
+[ext_resource type="PackedScene" uid="uid://24eu7nt8kxbo" path="res://prefabs/player/PlayerUI.tscn" id="3_g1bh6"]
+[ext_resource type="Resource" uid="uid://cc6sriuj6hrs4" path="res://resources/classes/warrior/shuriken.tres" id="3_u5d2w"]
+[ext_resource type="PackedScene" uid="uid://dtrvla00fg40u" path="res://prefabs/abilities/warrior/warriorDash.tscn" id="4_s5miy"]
+[ext_resource type="PackedScene" uid="uid://dsuiusrk47syl" path="res://prefabs/abilities/warrior/warriorSlamHandler.tscn" id="5_a43dc"]
+[ext_resource type="Resource" uid="uid://bkoofebbu5wp" path="res://resources/classes/warrior/warriorDash.tres" id="7_6nw7d"]
+[ext_resource type="Resource" uid="uid://dfuveijusg50y" path="res://resources/classes/warrior/warriorSlam.tres" id="8_wc8ln"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iv3nc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n1k67"]
+
+[node name="Warrior" type="CharacterBody3D" node_paths=PackedStringArray("abilityHandler")]
+script = ExtResource("1_10sbl")
+speed = 7.0
+jumpVelocity = 6.0
+sens = 0.2
+abilityHandler = NodePath("AbilityHandler")
+maxHealth = 400.0
+defense = 0.8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_iv3nc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_n1k67")
+
+[node name="FirstPersonCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464047, -0.512353)
+
+[node name="ShurikenHandler" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("2_cn0nn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.798976)
+abilityHandler = NodePath("../../AbilityHandler")
+
+[node name="WarriorSlashSpellHandler" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("3_dx1mm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.798976)
+abilityHandler = NodePath("../../AbilityHandler")
+
+[node name="WarriorDash" parent="FirstPersonCam" instance=ExtResource("4_s5miy")]
+distance = 8.0
+
+[node name="WarriorSlamHandler" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("5_a43dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46714, 0.135884)
+abilityHandler = NodePath("../../AbilityHandler")
+
+[node name="AbilityHandler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.27963)
+script = ExtResource("1_g3ijq")
+primaryAbility = ExtResource("3_u5d2w")
+secondaryAbility = ExtResource("8_wc8ln")
+utilityOneAbility = ExtResource("7_6nw7d")
+utilityTwoAbility = ExtResource("3_6up0e")
+primaryNodePath = NodePath("../FirstPersonCam/ShurikenHandler")
+primaryActivateMethodName = "Shoot"
+primaryDeactivateMethodName = "StoppedShooting"
+secondaryNodePath = NodePath("../FirstPersonCam/WarriorSlamHandler")
+secondaryActivateMethodName = "Shoot"
+secondaryDeactivateMethodName = "StoppedShooting"
+utilityOneNodePath = NodePath("../FirstPersonCam/WarriorDash")
+utilityOneActivateMethodName = "dash"
+utilityOneDeactivateMethodName = "StoppedDashing"
+utilityTwoNodePath = NodePath("../FirstPersonCam/WarriorSlashSpellHandler")
+utilityTwoActivateMethodName = "Shoot"
+utilityTwoDeactivateMethodName = "StoppedShooting"
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_g1bh6")]
+
+[connection signal="PlayerTookDamage" from="." to="PlayerUI" method="takingDamage"]
+[connection signal="UpdateMaxHealth" from="." to="PlayerUI" method="updateMaxHealth"]
