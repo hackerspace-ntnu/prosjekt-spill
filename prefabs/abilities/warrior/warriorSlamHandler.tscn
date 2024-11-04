@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsuiusrk47syl"]
+
+[ext_resource type="Script" path="res://scripts/classes/warrior/abilities/WarriorSlamHandler.cs" id="1_jnblu"]
+[ext_resource type="PackedScene" uid="uid://c2io3qhnij0tb" path="res://prefabs/abilities/warrior/warriorSlam.tscn" id="2_0wm4h"]
+
+[node name="WarriorSlamHandler" type="Node3D"]
+script = ExtResource("1_jnblu")
+slamScene = ExtResource("2_0wm4h")
+
+[node name="SlamSpawnpoint" type="Marker3D" parent="."]
+
+[node name="CastCooldown" type="Timer" parent="."]
