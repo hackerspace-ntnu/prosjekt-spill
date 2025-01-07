@@ -25,7 +25,7 @@ public partial class WarriorDash : Node3D
 
 	public override void _Ready()
 	{
-		// Get referance  to the character body
+		// Get referance to the character body
 		warrior = GetParent().GetParent() as CharacterBody3D;
 		camera = GetParent() as Camera3D;
 
@@ -48,7 +48,7 @@ public partial class WarriorDash : Node3D
 			// Update raycast for direction to match dash direction
 			raycast.TargetPosition = dashDirection * dashStep;
 
-			// Collision checks and apply damage
+			// TODO: Collision checks and apply damage
 
 			// Stop if reached set distance or wall/ground
 			if (raycast.IsColliding())
@@ -75,7 +75,7 @@ public partial class WarriorDash : Node3D
 		}
 	}
 
-	public void dash() 
+	public void Dash() 
 	{
 		// Check if the character can dash
 		if (!hasDashed && warrior != null) 
@@ -99,5 +99,7 @@ public partial class WarriorDash : Node3D
 	{
 		isDashing = false;
 		dashDistanceCovered = 0.0f;
+
+		warrior.Velocity = Vector3.Zero;
 	}
 }
