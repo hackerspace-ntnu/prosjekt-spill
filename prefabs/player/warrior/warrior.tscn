@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2fturnj0yila"]
+[gd_scene load_steps=17 format=3 uid="uid://2fturnj0yila"]
 
 [ext_resource type="Script" path="res://scripts/player/BaseCharacter.cs" id="1_10sbl"]
 [ext_resource type="Script" path="res://scripts/player/AbilityHandler.cs" id="1_g3ijq"]
@@ -9,8 +9,11 @@
 [ext_resource type="Resource" uid="uid://cc6sriuj6hrs4" path="res://resources/classes/warrior/shuriken.tres" id="3_u5d2w"]
 [ext_resource type="PackedScene" uid="uid://dtrvla00fg40u" path="res://prefabs/abilities/warrior/warriorDash.tscn" id="4_s5miy"]
 [ext_resource type="PackedScene" uid="uid://dsuiusrk47syl" path="res://prefabs/abilities/warrior/warriorSlamHandler.tscn" id="5_a43dc"]
+[ext_resource type="PackedScene" uid="uid://dbbsv71rqyqcx" path="res://prefabs/abilities/warrior/warriorUltimateSlamHandler.tscn" id="6_5so30"]
 [ext_resource type="Resource" uid="uid://bkoofebbu5wp" path="res://resources/classes/warrior/warriorDash.tres" id="7_6nw7d"]
+[ext_resource type="PackedScene" uid="uid://ddse2w2g4ts7v" path="res://prefabs/abilities/warrior/warriorUltimateSlam.tscn" id="7_iu2wp"]
 [ext_resource type="Resource" uid="uid://dfuveijusg50y" path="res://resources/classes/warrior/warriorSlam.tres" id="8_wc8ln"]
+[ext_resource type="Resource" uid="uid://b6fy06vjgfjq0" path="res://resources/classes/warrior/warriorUltimateSlam.tres" id="12_b0ql0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iv3nc"]
 
@@ -49,6 +52,11 @@ distance = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46714, 0.135884)
 abilityHandler = NodePath("../../AbilityHandler")
 
+[node name="WarriorUltimateSlamHandler" parent="FirstPersonCam" node_paths=PackedStringArray("abilityHandler") instance=ExtResource("6_5so30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000229001, -0.00808245)
+abilityHandler = NodePath("../../AbilityHandler")
+ultimateScene = ExtResource("7_iu2wp")
+
 [node name="AbilityHandler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.27963)
 script = ExtResource("1_g3ijq")
@@ -56,6 +64,7 @@ primaryAbility = ExtResource("3_u5d2w")
 secondaryAbility = ExtResource("8_wc8ln")
 utilityOneAbility = ExtResource("7_6nw7d")
 utilityTwoAbility = ExtResource("3_6up0e")
+ultimateAbility = ExtResource("12_b0ql0")
 primaryNodePath = NodePath("../FirstPersonCam/ShurikenHandler")
 primaryActivateMethodName = "Shoot"
 primaryDeactivateMethodName = "StoppedShooting"
@@ -63,11 +72,14 @@ secondaryNodePath = NodePath("../FirstPersonCam/WarriorSlamHandler")
 secondaryActivateMethodName = "Shoot"
 secondaryDeactivateMethodName = "StoppedShooting"
 utilityOneNodePath = NodePath("../FirstPersonCam/WarriorDash")
-utilityOneActivateMethodName = "dash"
+utilityOneActivateMethodName = "Dash"
 utilityOneDeactivateMethodName = "StoppedDashing"
 utilityTwoNodePath = NodePath("../FirstPersonCam/WarriorSlashSpellHandler")
 utilityTwoActivateMethodName = "Shoot"
 utilityTwoDeactivateMethodName = "StoppedShooting"
+ultimateNodePath = NodePath("../FirstPersonCam/WarriorUltimateSlamHandler")
+ultimateActivateMethodName = "Shoot"
+ultimateDeactivateMethodName = "StoppedShooting"
 
 [node name="PlayerUI" parent="." instance=ExtResource("3_g1bh6")]
 

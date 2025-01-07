@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b3qxeagwmmece"]
 
 [ext_resource type="Texture2D" uid="uid://bc8o2xt4r6u0p" path="res://pexels-photo-413195.jpeg" id="1_fkt44"]
-[ext_resource type="PackedScene" uid="uid://c7wku2yk145pw" path="res://prefabs/player/mage/mage.tscn" id="2_1j1g3"]
+[ext_resource type="PackedScene" uid="uid://2fturnj0yila" path="res://prefabs/player/warrior/warrior.tscn" id="2_gxquf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2rwf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -73,9 +73,6 @@ shape = SubResource("BoxShape3D_a7c5h")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_k0y7k")
 
-[node name="Mage" parent="." instance=ExtResource("2_1j1g3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57518, 0)
-
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.33118, 2.05902)
 physics_material_override = SubResource("PhysicsMaterial_urugt")
@@ -85,3 +82,6 @@ shape = SubResource("BoxShape3D_ragx2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("BoxMesh_4x8fc")
+
+[node name="Warrior" parent="." instance=ExtResource("2_gxquf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18717, 0)
